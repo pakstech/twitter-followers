@@ -1,0 +1,11 @@
+venv
+.idea
+google.json
+twitter.json
+__pycache__
+bin
+include
+lib
+lib64
+pip-selfcheck.json
+.Python
