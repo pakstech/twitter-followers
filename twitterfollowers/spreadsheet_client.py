@@ -18,6 +18,10 @@ class SpreadsheetClient:
         Google Sheets documents have by default 1000 rows. Remove excess rows if there is
         no data stored.
         """
+        if not self.sheet.acell('A1').value:
+            self.sheet.update_acell('A1', 'Date')
+            self.sheet.update_acell('B1', 'Followers')
+
         try:
             a2 = self.sheet.acell('A2').value
         except APIError:

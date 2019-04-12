@@ -8,13 +8,13 @@ from twitterfollowers.spreadsheet_client import SpreadsheetClient
 SCRIPT_DIR = sys.path[0]
 
 
-def main(spreadsheet_id, twitter_auth, google_auth):
+def main(twitter_account, spreadsheet_id, twitter_auth, google_auth):
     twitter_client = TwitterClient(twitter_auth)
     spreadsheet_client = SpreadsheetClient(google_auth, spreadsheet_id)
 
     now = datetime.datetime.now()
-    print("Fetch follower count")
-    data = [now.isoformat(), twitter_client.get_follower_count('pakstech')]
+    print(f"Fetch follower count for {twitter_account}")
+    data = [now.isoformat(), twitter_client.get_follower_count(twitter_account)]
     print(data)
 
     print("Update spreadsheet")
@@ -24,7 +24,9 @@ def main(spreadsheet_id, twitter_auth, google_auth):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Store Twitter follower count to Google Sheets')
-    parser.add_argument('spreadsheet_id',
+    parser.add_argument('--account',
+                        help="Twitter account name")
+    parser.add_argument('--spreadsheet_id',
                         help='Spreadsheet ID from the Google Sheets URL')
     parser.add_argument('-g', '--google_auth',
                         help='Google authentication file, default "google.json"',
@@ -33,6 +35,10 @@ if __name__ == '__main__':
                         help='Twitter authentication file, default "twitter.json"',
                         default=os.path.join(SCRIPT_DIR, "twitter.json"))
     args = parser.parse_args()
-    main(spreadsheet_id=args.spreadsheet_id,
-         twitter_auth=args.twitter_auth,
-         google_auth=args.google_auth)
+
+    main(
+            twitter_account=args.account,
+            spreadsheet_id=args.spreadsheet_id,
+            twitter_auth=args.twitter_auth,
+            google_auth=args.google_auth
+    )

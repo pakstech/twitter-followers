@@ -1,0 +1,6 @@
+{
+  "api_key": "apikey",
+  "api_secret_key": "apisecret",
+  "access_token": "accesstoken",
+  "access_token_secret": "accesstokensecret"
+}
