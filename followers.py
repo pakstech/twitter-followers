@@ -12,9 +12,9 @@ def main(twitter_account, spreadsheet_id, twitter_auth, google_auth):
     twitter_client = TwitterClient(twitter_auth)
     spreadsheet_client = SpreadsheetClient(google_auth, spreadsheet_id)
 
-    now = datetime.datetime.now()
+    now = datetime.datetime.now().strftime("%Y-%m-%dT%H:%M:%S") 
     print("Fetch follower count for {}".format(twitter_account))
-    data = [now.isoformat(), twitter_client.get_follower_count(twitter_account)]
+    data = [now, twitter_client.get_follower_count(twitter_account)]
     print(data)
 
     print("Update spreadsheet")

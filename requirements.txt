@@ -1,4 +1,3 @@
 gspread
 oauth2client
-python-twitter
 tweepy
