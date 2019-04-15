@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Twitter Followers</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.0/c3.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.2/d3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/c3/0.7.0/c3.min.js"></script>
+    <script type="text/javascript">
+        var chart = c3.generate({
+            bindto: "#chart",
+            data: {
+                url: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSTX9HuuS01jgFs1y0sdGKmDFqVeP81UZ5J2ojY9MJUjM1HriwnZrICTxVKBABR2hBdHGvdkQzYLwPC/pub?output=csv',
+                type: 'spline',
+                x: "Date",
+                xFormat: '%Y-%m-%dT%H:%M:%S',
+            },
+            axis: {
+                x: {
+                    type: 'timeseries',
+                    tick: {
+                        count: 5,
+                        format: '%Y-%m-%d'
+                    }
+                },
+            },
+            title: {
+                text: "Twitter followers"
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="chart"></div>
+</body>
+
+</html>
